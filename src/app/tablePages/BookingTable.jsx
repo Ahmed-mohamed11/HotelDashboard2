@@ -44,7 +44,7 @@ const PaginationControls = ({ currentPage, totalPages, paginate }) => (
     </div>
 );
 
-const RequestTable = ({ openCreate, openPreview }) => {
+const BookingTable = ({ openCreate, openPreview }) => {
     const dropdownRefs = useRef({});
     const [selectedHotelId, setSelectedHotelId] = useState(null);
     const [currentPage, setCurrentPage] = useState(1);
@@ -196,4 +196,4 @@ const RequestTable = ({ openCreate, openPreview }) => {
     );
 };
 
-export default RequestTable ;
+export default BookingTable ;

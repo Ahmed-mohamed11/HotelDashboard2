@@ -7,6 +7,7 @@ import Image from "next/image";
 import SidebarItem from "@/components/Sidebar/SidebarItem";
  import useLocalStorage from "@/hooks/useLocalStorage";
 import logo from "/public/images/Logo-green 1.svg";
+import ClickOutside from "../ClickOutside";
 
 interface SidebarProps {
   sidebarOpen: boolean;
@@ -212,7 +213,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
   const [pageName, setPageName] = useLocalStorage("selectedMenu", "dashboard");
 
   return (
-     
+    <ClickOutside onClick={() => setSidebarOpen(false)}>
       <aside
         className={`absolute left-0 top-0 z-40 flex min-h-screen w-72.5 flex-col overflow-y-hidden border-r border-stroke bg-white dark:border-stroke-dark dark:bg-gray-dark lg:static lg:translate-x-0 ${
           sidebarOpen
@@ -258,6 +259,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
           </nav>
         </div>
       </aside>
+    </ClickOutside>
   );
 };
 

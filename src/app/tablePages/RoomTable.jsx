@@ -3,7 +3,7 @@ import { useState, useRef, useEffect, useCallback, useMemo } from 'react';
 import Swal from 'sweetalert2';
 import { CaretLeft, CaretRight, Eye, PencilSimple, Plus, MagnifyingGlass, Trash } from '@phosphor-icons/react';
 
-export default function RequestTable({ openEdit, openCreate, openPreview }) {
+export default function RoomTable({ openEdit, openCreate, openPreview }) {
     const dropdownRefs = useRef({});
     const [selectedHotelId, setSelectedHotelId] = useState(null);
     const [currentPage, setCurrentPage] = useState(1);

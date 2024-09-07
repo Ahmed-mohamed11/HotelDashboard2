@@ -1,7 +1,7 @@
 "use client";
 import jsVectorMap from "jsvectormap";
 import React, { useEffect } from "react";
-import "../../js/us-aea-en"; // Ensure this path is correct and the map file is available
+import "../../js/us-aea-en";  
 
 const MapOne: React.FC = () => {
   useEffect(() => {

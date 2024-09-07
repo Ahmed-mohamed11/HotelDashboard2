@@ -10,7 +10,7 @@ import FormPic from "../../form/FormPic";
 
 const convenienceOptions = ["wifi", "parking", "laundry", "ac", "bar"];
 
-const AddHotel = ({ closeModal, role, modal }) => {
+const AddRequest = ({ closeModal, role, modal }) => {
     const [formData, setFormData] = useState({
         hotelName: "",
         address: "",
@@ -258,4 +258,4 @@ const AddHotel = ({ closeModal, role, modal }) => {
     );
 };
 
-export default AddHotel;
+export default AddRequest;

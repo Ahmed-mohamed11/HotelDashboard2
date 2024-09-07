@@ -1,8 +1,8 @@
-  'use client';
+'use client';
 import { useState, useRef, useEffect, useCallback, useMemo } from 'react';
 import { CaretLeft, CaretRight, Eye, Plus, MagnifyingGlass, Trash } from '@phosphor-icons/react';
 
- const PaginationControls = ({ currentPage, totalPages, paginate }) => (
+const PaginationControls = ({ currentPage, totalPages, paginate }) => (
     <div className="flex justify-end items-center p-4 gap-4">
         <button
             onClick={() => paginate(currentPage - 1)}
@@ -40,7 +40,7 @@ import { CaretLeft, CaretRight, Eye, Plus, MagnifyingGlass, Trash } from '@phosp
     </div>
 );
 
-const HotelTable = ({ openCreate, openPreview }) => {
+const RequestTable = ({ openCreate, openPreview }) => {
     const dropdownRefs = useRef({});
     const [selectedHotelId, setSelectedHotelId] = useState(null);
     const [currentPage, setCurrentPage] = useState(1);
@@ -94,7 +94,7 @@ const HotelTable = ({ openCreate, openPreview }) => {
         setCurrentPage(pageNumber);
     }, []);
 
-  
+
     return (
         <div className="font-sans">
             <section className="p-0 my-4 sm:p-5 ">
@@ -209,7 +209,7 @@ const HotelTable = ({ openCreate, openPreview }) => {
                                                 />
                                                 View
                                             </button>
-                                          
+
                                         </td>
                                     </tr>
                                 </tbody>
@@ -227,5 +227,5 @@ const HotelTable = ({ openCreate, openPreview }) => {
     );
 };
 
-export default HotelTable;
+export default RequestTable;
 
