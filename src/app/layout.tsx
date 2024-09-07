@@ -1,7 +1,6 @@
 "use client";
 import React, { useEffect, useState } from "react";
- import Loader from "./Loader";
-import "jsvectormap/dist/css/jsvectormap.css";
+ import "jsvectormap/dist/css/jsvectormap.css";
 import "@/css/satoshi.css";
 import "@/css/style.css";
 import DefaultLayout from "@/components/Layouts/DefaultLaout";
@@ -11,11 +10,7 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const [loading, setLoading] = useState<boolean>(true);
-
-  useEffect(() => {
-    setTimeout(() => setLoading(false), 1000);
-  }, []);
+ 
 
   return (
     <html lang="en">
@@ -26,7 +21,7 @@ export default function RootLayout({
         />
       </head>
       <body suppressHydrationWarning={true}>
-        {loading ? <Loader /> : <DefaultLayout>{children}</DefaultLayout>}
+        {  <DefaultLayout>{children}</DefaultLayout>}
       </body>
     </html>
   );

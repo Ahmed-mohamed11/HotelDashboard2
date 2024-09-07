@@ -1,6 +1,22 @@
 import React from "react";
 
-const Card = ({ icon: Icon, label, h1, value, colorClass, colorIcon }) => (
+ interface CardProps {
+  icon: React.ComponentType<{ size: number; className: string }>;
+  label: string;
+  h1: string;
+  value: string;
+  colorClass: string;
+  colorIcon: string;
+}
+
+const Card: React.FC<CardProps> = ({
+  icon: Icon,
+  label,
+  h1,
+  value,
+  colorClass,
+  colorIcon,
+}) => (
   <div
     className={`card1 flex w-36 flex-col items-start rounded-lg py-5 ps-2 shadow-md ${colorClass}`}
   >
@@ -16,4 +32,5 @@ const Card = ({ icon: Icon, label, h1, value, colorClass, colorIcon }) => (
     </div>
   </div>
 );
+
 export default React.memo(Card);
