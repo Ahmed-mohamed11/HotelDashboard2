@@ -6,10 +6,10 @@ function FormPic({ label, name, onChange, file, readOnly }) {
     <div>
       <label
         htmlFor="file-upload"
-        className="flex font-sans items-center justify-center gap-2 bg-green-400 hover:bg-green-700 
+        className="flex font-sans items-center justify-center gap-2   
                                             outline-none font-medium rounded-md 
-                                            text-md px-5 py-2.5 text-center 
-                                            ease-linear text-white duration-100"
+                                            text-md px-5 py-2 text-center 
+                                            ease-linear bg-green-700 text-white duration-100"
       >
         {label}
       </label>

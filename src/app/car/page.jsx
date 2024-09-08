@@ -1,10 +1,9 @@
 import React from 'react'
-import Request from '../requestPages/Request'
+import Car from '../carPages/Car'
 
 const page = () => {
     return (
-        <Request />
-
+        <Car />
     )
 }
 

@@ -1,5 +1,5 @@
 import React from 'react'
-import Booking from '../mainPages/Booking'
+import Booking from '../bookingPages/Booking'
 const page = () => {
     return (
         <div>

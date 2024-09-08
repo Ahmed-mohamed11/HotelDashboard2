@@ -31,8 +31,7 @@ const MapOne: React.FC = () => {
         },
         regionLabelStyle: {
           initial: {
-            fontFamily: "Satoshi",
-            fontWeight: "semibold",
+             fontWeight: "semibold",
             fill: "#fff",
           },
           hover: {
@@ -61,9 +60,9 @@ const MapOne: React.FC = () => {
   }, []);
 
   return (
-    <div className="col-span-12 rounded-[10px] bg-white p-3 shadow-1 dark:bg-gray-dark dark:shadow-card">
+    <div className="col-span-12 rounded-[10px] bg-white p-5 shadow-1 dark:bg-gray-dark dark:shadow-card">
       <h4 className="text-body-2xlg font-bold text-dark dark:text-white">
-        Region labels
+        Booking maps by country
       </h4>
       <div className="h-[310px]">
         <div id="mapOne" className="mapOne map-btn"></div>

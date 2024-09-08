@@ -221,19 +221,19 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
             : "-translate-x-full"
         }`}
       >
-        <div className="flex items-center justify-center gap-2 px-6 py-5.5 lg:py-6.5 xl:py-10">
+        <div className="flex items-center justify-center gap-2 px-6 py-5.5 lg:py-6.5 xl:pt-4 xl:pb-8">
           <Link href="/">
-            <div className="aside-content my-3 flex items-end justify-evenly text-3xl font-bold md:justify-start">
+            <div className="aside-content  flex items-center justify-evenly text-3xl font-bold md:justify-start">
               <Image
                 src={logo}
                 alt="Zayer Logo"
-                width={70}
+                width={60}
                 priority
-                className="relative -top-5 rounded-full shadow-md shadow-gray-200 sm:hidden lg:block"
+                className="relative   rounded-full shadow-md shadow-gray-200 sm:hidden lg:block"
               />
             </div>
           </Link>
-          <span className="text-5xl text-[#151D48] dark:text-white">Zayer</span>
+          <span className="text-4xl text-[#151D48] dark:text-white">Zayer</span>
         </div>
 
         <div className="no-scrollbar flex flex-col overflow-y-auto duration-300 ease-linear">

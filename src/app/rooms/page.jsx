@@ -1,5 +1,5 @@
 import React from 'react'
-import Rooms from '../mainPages/Rooms'
+import Rooms from '../roomsPages/Rooms'
 
 const page = () => {
     return (

@@ -19,8 +19,7 @@ const ChartNine: React.FC = () => {
     },
     colors: ["#FFCF00", "#0ABEF9"],
     chart: {
-      fontFamily: "Satoshi, sans-serif",
-      height: 310,
+       height: 310,
       type: "area",
       toolbar: {
         show: false,

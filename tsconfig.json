@@ -21,6 +21,15 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/app/addPages/AddBooking.jsx", "src/app/addPages/AddRoom.jsx", "src/app/addPages/AddRequest.jsx", "src/app/addPages/AddHotel.jsx"],
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts",
+    "src/app/bookingPages/AddBooking.jsx",
+    "src/app/roomsPages/AddRoom.jsx",
+    "src/app/requestPages/AddRequest.jsx",
+    "src/app/hotelsPages/AddHotel.jsx"
+  ],
   "exclude": ["node_modules"]
 }

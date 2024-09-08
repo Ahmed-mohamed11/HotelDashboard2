@@ -10,7 +10,7 @@ function FormPicProfile({ label, name, onChange, file, readOnly }) {
     <div>
       <label
         htmlFor="file-upload"
-        className={`flex items-center font-sans gap-2 bg-gray-50 hover:bg-orange-700 
+        className={`flex items-center font-sans gap-2 bg-gray-50 hover:bg-green-700 
         outline-none font-medium rounded-full bg-cover bg-center
         text-xs px-5 py-2.5 text-center w-20 h-20 hover:backdrop-filter
         ease-linear duration-100 mx-auto cursor-pointer`}
@@ -26,15 +26,7 @@ function FormPicProfile({ label, name, onChange, file, readOnly }) {
         onChange={onChange}
         readOnly={readOnly}
       />
-      {/* {file && (
-        <div>
-          <img
-            src={URL.createObjectURL(file)}
-            alt="Uploaded Image"
-            className="rounded-full w-20 h-20"
-          />
-        </div>
-      )} */}
+   
     </div>
   );
 }

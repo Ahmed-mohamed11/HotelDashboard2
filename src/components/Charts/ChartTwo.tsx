@@ -18,8 +18,7 @@ const ChartTwo: React.FC = () => {
   const options: ApexOptions = {
     colors: ["#5750F1", "#0ABEF9"],
     chart: {
-      fontFamily: "Satoshi, sans-serif",
-      type: "bar",
+       type: "bar",
       height: 335,
       stacked: true,
       toolbar: {
@@ -76,8 +75,7 @@ const ChartTwo: React.FC = () => {
     legend: {
       position: "top",
       horizontalAlign: "left",
-      fontFamily: "Satoshi",
-      fontWeight: 500,
+       fontWeight: 500,
       fontSize: "14px",
 
       markers: {

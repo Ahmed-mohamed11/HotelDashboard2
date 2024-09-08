@@ -1,10 +1,9 @@
 import React from 'react'
-import Request from '../requestPages/Request'
+import Renting from '../rentingPages/Renting'
 
 const page = () => {
     return (
-        <Request />
-
+        <Renting />
     )
 }
 

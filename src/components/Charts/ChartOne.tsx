@@ -23,8 +23,7 @@
       },
       colors: ["#5750F1", "#0ABEF9"],
       chart: {
-        fontFamily: "Satoshi, sans-serif",
-        height: 310,
+         height: 310,
         type: "area",
         toolbar: {
           show: false,
