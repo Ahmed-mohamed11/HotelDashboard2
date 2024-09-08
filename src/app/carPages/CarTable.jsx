@@ -1,6 +1,5 @@
-'use client';
-import { useState, useRef, useEffect, useCallback, useMemo } from 'react';
-import { CaretLeft, CaretRight, DotsThreeVertical, Eye, Plus, MagnifyingGlass, Trash, PencilSimple } from '@phosphor-icons/react';
+import { useState, useEffect, useCallback } from 'react';
+import { CaretLeft, CaretRight, DotsThree, Eye, NotePencil, TrashSimple, MagnifyingGlass, Plus } from '@phosphor-icons/react';
 
 const PaginationControls = ({ currentPage, totalPages, paginate }) => (
     <div className="flex justify-end items-center p-4 gap-4">
@@ -11,7 +10,7 @@ const PaginationControls = ({ currentPage, totalPages, paginate }) => (
         >
             <CaretLeft size={18} weight="bold" />
         </button>
-        <div className="space-x-2 hidden md:block">
+        <div className="space-x-2 hidden md:block z-0">
             {Array.from({ length: Math.min(6, totalPages) }, (_, i) => {
                 const page = Math.floor((currentPage - 1) / 6) * 6 + i + 1;
                 return (
@@ -44,19 +43,32 @@ const CarTable = ({ openCreate, openPreview }) => {
     const [selectedCarId, setSelectedCarId] = useState(null);
     const [currentPage, setCurrentPage] = useState(1);
     const [searchTerm, setSearchTerm] = useState('');
-
-    const itemsPerPage = 10;
-    const totalPages = 10;
-
-    const currentSet = useMemo(() => {
-        if (totalPages <= 6) {
-            return Array.from({ length: totalPages }, (_, i) => i + 1);
-        }
-        const startPage = Math.floor((currentPage - 1) / 6) * 6 + 1;
-        return Array.from({ length: 6 }, (_, i) => startPage + i).filter(
-            (page) => page <= totalPages
-        );
-    }, [currentPage, totalPages]);
+    const [cars, setCars] = useState([
+        {
+            id: 1,
+            type: 'SUV',
+            model: 'Toyota Highlander',
+            condition: 'New',
+            price: '$35,000',
+            status: 'Available',
+        },
+        {
+            id: 2,
+            type: 'Sedan',
+            model: 'Honda Accord',
+            condition: 'Used',
+            price: '$15,000',
+            status: 'FULL Reserved',
+        },
+        {
+            id: 3,
+            type: 'Truck',
+            model: 'Ford F-150',
+            condition: 'New',
+            price: '$45,000',
+            status: 'Available',
+        },
+    ]);
 
     const handleClickOutside = useCallback((event) => {
         if (selectedCarId !== null) {
@@ -84,30 +96,15 @@ const CarTable = ({ openCreate, openPreview }) => {
         setCurrentPage(pageNumber);
     }, []);
 
-    // Sample car data
-    const cars = [
-        {
-            type: 'SUV',
-            model: 'Toyota Highlander',
-            condition: 'New',
-            price: '$35,000',
-            status: 'Available',
-        },
-        {
-            type: 'Sedan',
-            model: 'Honda Accord',
-            condition: 'Used',
-            price: '$15,000',
-            status: 'FULL Reserved',
-        },
-        {
-            type: 'Truck',
-            model: 'Ford F-150',
-            condition: 'New',
-            price: '$45,000',
-            status: 'Available',
-        },
-    ];
+    // تغيير حالة السيارة
+    const changeStatus = (carId, newStatus) => {
+        setCars((prevCars) =>
+            prevCars.map((car) =>
+                car.id === carId ? { ...car, status: newStatus } : car
+            )
+        );
+        setSelectedCarId(null); // غلق القائمة المنسدلة بعد التحديث
+    };
 
     return (
         <div className="font-sans">
@@ -173,8 +170,8 @@ const CarTable = ({ openCreate, openPreview }) => {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {cars.map((car, index) => (
-                                        <tr key={index} className="border-b text-center">
+                                    {cars.map((car) => (
+                                        <tr key={car.id} className="border-b text-center">
                                             <td className="px-4 py-3">{car.type}</td>
                                             <td className="px-4 py-3">{car.model}</td>
                                             <td className="px-4 py-3">{car.condition}</td>
@@ -182,37 +179,50 @@ const CarTable = ({ openCreate, openPreview }) => {
                                             <td className={`px-4 py-3 ${car.status === 'Available' ? 'text-green-500' : 'text-red-500'}`}>
                                                 {car.status}
                                             </td>
-                                            <td className="px-4 py-3 relative ">
+                                            <td className="px-4 py-3 flex items-center justify-end relative">
                                                 <button
-                                                    onClick={() => toggleDropdown(index)}
-                                                    className="text-gray-500 hover:text-gray-800 focus:outline-none "
+                                                    className="inline-flex items-center text-sm font-medium hover:bg-gray-100 p-1.5 text-gray-500 hover:text-gray-800 rounded-lg focus:outline-none"
+                                                    type="button"
+                                                    onClick={() => toggleDropdown(car.id)}
                                                 >
-                                                    <DotsThreeVertical size={24} />
+                                                    <DotsThree size={25} weight="bold" />
                                                 </button>
-                                                {selectedCarId === index && (
+                                                {selectedCarId === car.id && (
                                                     <div
-                                                        id={`dropdown-${index}`}
-                                                        className="absolute  right-20 top-5 z-50 mt-2 py-2 w-32 bg-white rounded-md shadow-xl border border-gray-300"
+                                                        id={`dropdown-${car.id}`}
+                                                        className="absolute  z-auto  w-44 bg-white rounded divide-y divide-gray-100 shadow top-0 right-0 dark:bg-gray-700 dark:divide-gray-600"
                                                     >
-                                                        <button
-                                                            className="  w-full flex px-4 py-2 text-left text-sm hover:bg-gray-100 text-green-800"
-                                                            onClick={openPreview}
-                                                        >
-                                                            <Eye size={20} className="mr-2" />
-                                                            <span>View</span>
-                                                        </button>
-                                                        <button
-                                                            className="flex w-full px-4 py-2 text-left text-sm hover:bg-gray-100 text-red-800"
-                                                        >
-                                                            <Trash size={20} className="mr-2" />
-                                                            <span>Ban</span> 
-                                                        </button>
-                                                        <button
-                                                            className="flex w-full px-4 py-2 text-left text-sm hover:bg-gray-100 text-blue-800"
-                                                        >
-                                                            <PencilSimple size={20} className="mr-2" />
-                                                            <span>Edit</span>  
-                                                        </button>
+                                                        <ul className="py-1 text-sm">
+                                                            <li>
+                                                                <button
+                                                                    type="button"
+                                                                    onClick={() => openPreview(car)}
+                                                                    className="flex gap-2 w-full items-center py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600  text-gray-700 dark:text-gray-200"
+                                                                >
+                                                                    <Eye size={18} weight="bold" />
+                                                                    Preview
+                                                                </button>
+                                                            </li>
+                                                            <li>
+                                                                <button
+                                                                    type="button"
+                                                                    onClick={() => changeStatus(car.id, car.status === 'Available' ? 'FULL Reserved' : 'Available')}
+                                                                    className="flex gap-2 w-full items-center py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600  text-gray-700 dark:text-gray-200"
+                                                                >
+                                                                    <NotePencil size={18} weight="bold" />
+                                                                    Change Status
+                                                                </button>
+                                                            </li>
+                                                            <li>
+                                                                <button
+                                                                    type="button"
+                                                                    className="flex gap-2 w-full items-center py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600  text-gray-700 dark:text-gray-200"
+                                                                >
+                                                                    <TrashSimple size={18} weight="bold" />
+                                                                    Delete
+                                                                </button>
+                                                            </li>
+                                                        </ul>
                                                     </div>
                                                 )}
                                             </td>
@@ -221,7 +231,11 @@ const CarTable = ({ openCreate, openPreview }) => {
                                 </tbody>
                             </table>
                         </div>
-                        <PaginationControls currentPage={currentPage} totalPages={totalPages} paginate={paginate} />
+                        <PaginationControls
+                            currentPage={currentPage}
+                            totalPages={Math.ceil(cars.length / 10)}
+                            paginate={paginate}
+                        />
                     </div>
                 </div>
             </section>
