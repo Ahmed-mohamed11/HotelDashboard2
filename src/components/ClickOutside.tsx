@@ -16,6 +16,8 @@ const ClickOutside: React.FC<Props> = ({
   const wrapperRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    if (typeof window !== "undefined") {
+
     const handleClickListener = (event: MouseEvent) => {
       let clickedInside: null | boolean = false;
       if (exceptionRef) {
@@ -39,7 +41,7 @@ const ClickOutside: React.FC<Props> = ({
     return () => {
       document.removeEventListener("mousedown", handleClickListener);
     };
-  }, [exceptionRef, onClick]);
+  }  }, [exceptionRef, onClick]);
 
   return (
     <div ref={wrapperRef} className={`${className || ""}`}>

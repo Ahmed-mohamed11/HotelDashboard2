@@ -24,12 +24,13 @@ const Booking: React.FC<{ role: string }> = ({ role }) => {
     const toggleOpenPreviewModal = useCallback(() => setOpenPreview(prev => !prev), []);
 
     useEffect(() => {
+        if (typeof window !== "undefined") {
         const ctx = gsap.context(() => {
             gsap.fromTo(".chart-container", { opacity: 0, y: 50 }, { opacity: 1, y: 0, duration: 1, stagger: 0.2 });
-        });
+          });
 
         return () => ctx.revert();
-    }, []);
+    }}, []);
 
     const chartSection = useMemo(() => (
         <div className="flex flex-col flex-wrap items-center justify-between gap-4 md:flex-row lg:flex-row xl:flex-row">

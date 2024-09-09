@@ -25,23 +25,21 @@ function useLocalStorage<T>(
     }
   });
 
-  // useEffect to update local storage when the state changes
-  useEffect(() => {
+   useEffect(() => {
+    if (typeof window !== "undefined") {
+
     try {
-      // Allow value to be a function so we have same API as useState
-      const valueToStore =
+       const valueToStore =
         typeof storedValue === "function"
           ? storedValue(storedValue)
           : storedValue;
-      // Save state
-      if (typeof window !== "undefined") {
-        // browser code
+       if (typeof window !== "undefined") {
         window.localStorage.setItem(key, JSON.stringify(valueToStore));
       }
     } catch (error) {
        console.log(error);
     }
-  }, [key, storedValue]);
+  }  }, [key, storedValue]);
 
   return [storedValue, setStoredValue];
 }

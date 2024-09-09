@@ -5,13 +5,15 @@ const useColorMode = () => {
   const [colorMode, setColorMode] = useLocalStorage("color-theme", "light");
 
   useEffect(() => {
+    if (typeof window !== "undefined") {
+
     const className = "dark";
     const bodyClass = window.document.documentElement.classList;
 
     colorMode === "dark"
       ? bodyClass.add(className)
       : bodyClass.remove(className);
-  }, [colorMode]);
+  }  }, [colorMode]);
 
   return [colorMode, setColorMode];
 };

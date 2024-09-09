@@ -5,6 +5,8 @@ import "../../js/us-aea-en";
 
 const MapOne: React.FC = () => {
   useEffect(() => {
+    if (typeof window !== "undefined") {
+
     const mapElement = document.getElementById("mapOne");
 
     if (!mapElement) {
@@ -57,7 +59,7 @@ const MapOne: React.FC = () => {
         console.error("Vector map instance not found during cleanup");
       }
     };
-  }, []);
+  }  }, []);
 
   return (
     <div className="col-span-12 rounded-[10px] bg-white p-5 shadow-1 dark:bg-gray-dark dark:shadow-card">

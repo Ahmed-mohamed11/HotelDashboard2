@@ -1,7 +1,7 @@
 'use client'
 import ECommerce from "@/components/Dashboard/E-commerce";
 import { Metadata } from "next";
- import React, { useEffect, useState } from "react";
+ import React from "react";
  
   const metadata: Metadata = {
   title:

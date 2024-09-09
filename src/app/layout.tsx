@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React from "react";
  import "jsvectormap/dist/css/jsvectormap.css";
  import "@/css/style.css";
 import DefaultLayout from "@/components/Layouts/DefaultLaout";
