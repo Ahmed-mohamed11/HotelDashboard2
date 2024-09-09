@@ -3,8 +3,7 @@ import { ApexOptions } from "apexcharts";
 import React from "react";
 import DefaultSelectOption from "@/components/SelectOption/DefaultSelectOption";
 
-// Dynamically import the chart to disable SSR
-const ReactApexChart = dynamic(() => import("react-apexcharts"), {
+ const ReactApexChart = dynamic(() => import("react-apexcharts"), {
   ssr: false,
 });
 
