@@ -18,7 +18,7 @@ const Card: React.FC<CardProps> = ({
   colorIcon,
 }) => (
   <div
-    className={`card1 flex w-36 flex-col items-start rounded-lg py-5 ps-2 shadow-md ${colorClass}`}
+    className={`card1 flex w-40 flex-col items-start rounded-lg py-5 px-3 shadow-md ${colorClass}`}
   >
     <div
       className={`my-3 flex h-8 w-8 items-center justify-center rounded-full ${colorIcon}`}

@@ -1,59 +1,34 @@
 'use client';
-import { useState, useCallback } from "react";
-import { Plus, X } from "@phosphor-icons/react";
-import FormBtnIcon from "../../form/FormBtnIcon";
+import { useState, useCallback, useMemo } from "react";
+import { X } from "@phosphor-icons/react";
 import FormText from "../../form/FormText";
 import FormNumber from "../../form/FormNumber";
-import FormEmail from "../../form/FormEmail";
 import FormSelect from "../../form/FormSelect";
-import FormInput from "../../form/FormInput";
-import debounce from 'lodash.debounce';
-import { Button, Input, Label } from "reactstrap";
+import { Label } from "reactstrap";
+import { Inter } from 'next/font/google';
+import Image from 'next/image';
+import carImage from '../../../public/images/Group (5).svg'; // Import the car image
+import FormTextArea from "@/form/FormTextArea";
 
-export default function PreviewCar({ closeModal }) {
-    const [formData, setFormData] = useState({
-        customerName: "name",
-        roomNumber: "50",
-        customerID: "1",
-        carType: "Lada",
-        RentalPeriod: "Day",
-        Currency: "Currency",
-        country: "Egypt",
-        mobileNumber: "01032210349",
-        email: "info@gmail.com",
-        hotelName: "kiloPatra",
-        DeliveryDate: "17/4/2002",
-    });
+const inter = Inter({ subsets: ['latin'], weight: ['400', '600'] });
 
-    const [showDeclineReason, setShowDeclineReason] = useState(false);
-    const [declineReason, setDeclineReason] = useState("");
-    const [selectedFacility, setSelectedFacility] = useState("ac");
+const previewCar = ({ closeModal, role, modal }) => {
+    const initialFormData = useMemo(() => ({
+        carType: "Sedan",
+        carModel: "2021",
+        carPrice: "25000",
+        carCondition: "perfect",
+        facilities: ["ac", "gps"],
+        description: "This car is in perfect condition with modern features.",
+    }), []);
 
-    const handleChange = useCallback(debounce((e) => {
-        const { name, value } = e.target;
-        setFormData((prevData) => ({
-            ...prevData,
-            [name]: value,
-        }));
-    }, 300), []);
+    const [formData, setFormData] = useState(initialFormData);
 
-    const handleBackgroundClick = (e) => {
+    const handleBackgroundClick = useCallback((e) => {
         if (e.target === e.currentTarget) {
             closeModal();
         }
-    };
-
-    const handleDeclineClick = () => {
-        setShowDeclineReason(true);
-    };
-
-    const handleReasonChange = (e) => {
-        setDeclineReason(e.target.value);
-    };
-
-    const handleFacilityChange = (e) => {
-        setSelectedFacility(e.target.value);
-    };
+    }, [closeModal]);
 
     return (
         <div
@@ -65,8 +40,9 @@ export default function PreviewCar({ closeModal }) {
                 style={{ width: '40vw', zIndex: 50 }}
             >
                 <div className="relative text-gray-900">
+                    {/* Car Image with Rotating Border */}
                     <div className="bg-green-700 w-full flex justify-between items-center text-white p-3 mb-4 rounded-t-lg border-b">
-                        <h3 className="text-lg font-semibold">View Booking</h3>
+                        <h3 className="text-lg font-semibold">View Car</h3>
                         <button
                             type="button"
                             onClick={closeModal}
@@ -76,201 +52,121 @@ export default function PreviewCar({ closeModal }) {
                             <span className="sr-only">Close modal</span>
                         </button>
                     </div>
+                    <div className="flex justify-center my-8">
+                        <div className="w-32 h-32 rounded-2xl rotate-45 border-4 border-green-700 p-2 animate-spin-slow">
+                            <Image
+                                src={carImage}
+                                alt="Car"
+                                className="w-full h-full -rotate-45 object-contain rounded-full"
+                            />
+                        </div>
+                    </div>
                     <form>
                         <div className="gap-4 mb-4 px-4">
                             <div className="flex justify-between items-center gap-3">
                                 <div className="w-1/2">
                                     <FormText
-                                        label="Customer Name"
-                                        name="customerName"
-                                        value={formData.customerName}
-                                        placeholder="Enter Customer Name"
+                                        label="Car Type"
+                                        name="carType"
+                                        value={formData.carType}
+                                        placeholder="Enter Car Type"
                                         readOnly
                                     />
                                 </div>
                                 <div className="w-1/2">
                                     <FormNumber
-                                        label="Mobile Number"
-                                        name="mobileNumber"
-                                        value={formData.mobileNumber}
-                                        placeholder="+966 0123456789"
-                                        required
+                                        label="Car Model"
+                                        name="carModel"
+                                        value={formData.carModel}
+                                        placeholder="Enter Car Model"
                                         readOnly
                                     />
                                 </div>
                             </div>
+
                             <div className="flex justify-between items-center gap-3 mt-3">
                                 <div className="w-1/2">
-                                    <FormEmail
-                                        label="Email"
-                                        name="email"
-                                        value={formData.email}
-                                        placeholder="Enter Email Address"
+                                    <FormSelect
+                                        selectLabel="Car Condition"
+                                        name="carCondition"
+                                        value={formData.carCondition}
+                                        options={[
+                                            { value: "perfect", label: "Perfect" },
+                                            { value: "Good", label: "Good" },
+                                            { value: "bad", label: "Bad" },
+                                        ]}
                                         readOnly
                                     />
                                 </div>
                                 <div className="w-1/2">
-                                    <FormText
-                                        label="Country"
-                                        name="country"
-                                        value={formData.country}
-                                        placeholder="Enter Country"
-                                        required
+                                    <FormNumber
+                                        label="Car Price"
+                                        name="carPrice"
+                                        value={formData.carPrice}
+                                        placeholder="Enter Car Price"
                                         readOnly
                                     />
                                 </div>
-
                             </div>
+
                             <div className="flex justify-between items-center gap-3 mt-3">
                                 <div className="w-1/2">
-                                    <FormText
-                                        label="Customer ID"
-                                        name="customerID"
-                                        value={formData.customerID}
-                                        placeholder="Enter Customer ID"
-                                        required
-                                        readOnly
-                                    />
-                                </div>
-                                <div className="w-1/2">
-                                    <FormText
-                                        label="Car Type"
-                                        name="carType"
-                                        value={formData.carType}
-                                        placeholder="Enter car Type"
-                                        required
-                                        readOnly
-                                    />
-                                </div>
-
-                            </div>
-                            <div className="flex justify-between gap-3 mt-3">
-
-
-                                <div className="w-2/3">
                                     <Label>Facilities</Label>
-                                    <div className="flex space-x-2 ">
-                                        <div className="flex items-center space-x-2">
-                                            <input
-                                                type="radio"
-                                                id="ac"
-                                                name="facility"
-                                                value="ac"
-                                                checked={selectedFacility === 'ac'}
-                                                onChange={handleFacilityChange}
-                                                className="form-radio h-4 w-4 text-green-600"
-                                            />
-                                            <Label htmlFor="ac" className="ml-2 text-gray-700">AC</Label>
-                                        </div>
-                                        <div className="flex items-center space-x-2">
-                                            <input
-                                                type="radio"
-                                                id="standing"
-                                                name="facility"
-                                                value="standing"
-                                                checked={selectedFacility === 'standing'}
-                                                onChange={handleFacilityChange}
-                                                className="form-radio h-4 w-4 text-green-600"
-                                            />
-                                            <Label htmlFor="standing" className="ml-2 text-gray-700">Standing at rest stops</Label>
-                                        </div>
-                                        <div className="flex items-center space-x-2">
-                                            <input
-                                                type="radio"
-                                                id="additional"
-                                                name="facility"
-                                                value="additional"
-                                                checked={selectedFacility === 'additional'}
-                                                onChange={handleFacilityChange}
-                                                className="form-radio h-4 w-4 text-green-600"
-                                            />
-                                            <Label htmlFor="additional" className="ml-2 text-gray-700">Additional trips</Label>
-                                        </div>
+                                    <div className="flex space-x-2 my-3">
+                                        {["AC", "GPS", "Bluetooth", "Wifi"].map((facility) => (
+                                            <div key={facility} className="flex items-center space-x-2">
+                                                <input
+                                                    type="checkbox"
+                                                    id={facility.toLowerCase()}
+                                                    name="facilities"
+                                                    value={facility.toLowerCase()}
+                                                    checked={formData.facilities.includes(facility.toLowerCase())}
+                                                    readOnly
+                                                    className="form-checkbox h-4 w-4 text-green-600"
+                                                />
+                                                <Label htmlFor={facility.toLowerCase()} className="ml-2 text-gray-700">
+                                                    {facility}
+                                                </Label>
+                                            </div>
+                                        ))}
                                     </div>
                                 </div>
-                                <div className="w-1/3">
-                                    <FormInput
-                                        label="Delivery date"
-                                        name="Delivery date"
-                                        type="date"
-                                        value={formData.DeliveryDate}
-                                        readOnly
-                                    />
-                                </div>
-                            </div>
-
-                            <div className="flex justify-between gap-3 mt-5">
-                                <div className="md:w-1/2">
-                                    <FormSelect
-                                        selectLabel="Rental period"
-                                        name="Rental period"
-                                        value={formData.RentalPeriod}
-                                        options={[{ value: "Day", label: "Day" }, { value: "week", label: "week" }, { value: "month", label: "month" }]}
-                                        handleChange={handleChange}
-                                    />
-                                </div>
-                                <div className="md:w-1/2 flex flex-col  items-center">
-                                    <Label htmlFor="adults">Adults</Label>
-                                    <div className="flex items-center p-2 my-3 bg-gray-50">
-                                        <Button variant="outline">-</Button>
-                                        <Input id="adults" value="2" className="text-center bg-gray-50" readOnly />
-                                        <Button variant="outline">+</Button>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="flex justify-between gap-3 mt-5">
-
                                 <div className="w-1/2">
-                                    <FormText
-                                        label="Car Type"
-                                        name="carType"
-                                        value={formData.carType}
-                                        placeholder="Enter car Type"
-                                        required
-                                        readOnly
-                                    />
-                                </div>
-                                <div className="md:w-1/2">
-                                    <FormSelect
-                                        selectLabel="Currency"
-                                        name="Currency"
-                                        value={formData.Currency}
-                                        options={[{ value: "Currency", label: "Currency" }, { value: "Currency", label: "Currency" }]}
-                                        handleChange={handleChange}
-                                    />
+                                    <button
+                                        type="button"
+                                        className="px-8 py-2 bg-red-700 text-white rounded-lg shadow-md hover:bg-green-800"
+                                        disabled
+                                    >
+                                        Full Observed
+                                    </button>
                                 </div>
                             </div>
+                            <div className="mt-3">
+                                <FormTextArea
+                                    label="Description"
+                                    name="description"
+                                    value={formData.description}
+                                    placeholder="Enter description"
+                                    readOnly
+                                />
+                            </div>
 
-
-                            {showDeclineReason && (
-                                <div className="mt-4">
-                                    <textarea
-                                        className="form-textarea w-full border border-gray-300 rounded-lg p-2"
-                                        placeholder="Reason for Declining"
-                                        value={declineReason}
-                                        onChange={handleReasonChange}
-                                    />
-                                </div>
-                            )}
-
-                            <div className="flex justify-center gap-2 my-5">
-                                <div className="w-fit bg-green-700 py-2 rounded-2xl  text-center">
-                                    <FormBtnIcon
-                                        Icon={Plus}
-                                        label="Approve"
-                                        type="submit"
-                                        className="w-full mt-6 text-white  font-bold py-2 px-4 rounded"
-                                    />
-                                </div>
-                                <div className="w-fit  bg-red-500 py-2  rounded-2xl text-center">
-                                    <FormBtnIcon
-                                        label="Decline"
-                                        Icon={X}
-                                        type="button"
-                                        className="w-full mt-6 text-white font-bold py-2 px-4 rounded"
-                                        onClick={handleDeclineClick}
-                                    />
-                                </div>
+                            {/* Buttons */}
+                            <div className="flex justify-center gap-2 mt-5">
+                                <button
+                                    type="button"
+                                    className="px-8 py-2 bg-green-700 text-white rounded-lg shadow-md"
+                                    disabled
+                                >
+                                    Approve
+                                </button>
+                                <button
+                                    type="button"
+                                    onClick={closeModal}
+                                    className="px-8 py-2 w-fit bg-red-600 text-white rounded-lg shadow-md hover:bg-red-700"
+                                >
+                                    Decline
+                                </button>
                             </div>
                         </div>
                     </form>
@@ -278,4 +174,6 @@ export default function PreviewCar({ closeModal }) {
             </div>
         </div>
     );
-}
+};
+
+export default previewCar;

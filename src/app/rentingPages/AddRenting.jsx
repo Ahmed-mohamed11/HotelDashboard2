@@ -65,7 +65,7 @@ const AddRenting = ({ closeModal, role, modal }) => {
             >
                 <div className="relative text-gray-900">
                     <div className="bg-green-700 w-full flex justify-between items-center text-white p-3 mb-4 rounded-t-lg border-b">
-                        <h3 className="text-lg font-semibold">Add Booking</h3>
+                        <h3 className="text-lg font-semibold">Add Renting</h3>
                         <button
                             type="button"
                             onClick={closeModal}

@@ -1,4 +1,5 @@
 'use client';
+import React from "react";
 import { useState, useCallback, useMemo } from "react";
 import { X } from "@phosphor-icons/react";
 import FormText from "../../form/FormText";
@@ -68,7 +69,7 @@ const AddBooking = ({ closeModal, role, modal }) => {
             >
                 <div className="relative text-gray-900">
                     <div className="bg-green-700 w-full flex justify-between items-center text-white p-3 mb-4 rounded-t-lg border-b">
-                        <h3 className="text-lg font-semibold">Add Hotel</h3>
+                        <h3 className="text-lg font-semibold">Add Booking</h3>
                         <button
                             type="button"
                             onClick={closeModal}
@@ -230,28 +231,33 @@ const AddBooking = ({ closeModal, role, modal }) => {
                                     </div>
                                 </div>
                             </div>
-                            <FormPic
-                                label="Upload Image"
-                                name="file"
-                                onChange={handleFileUpload}
-                                className="w-full text-center"
-                            />
                         </div>
-                        <div className="flex justify-around gap-2 mt-3">
-                            <button
-                                type="button"
-                                className="px-4 py-2 bg-green-700 text-white rounded-lg shadow-md hover:bg-green-800"
-                            >
-                                Approve
-                            </button>
-                            <button
-                                type="button"
-                                onClick={closeModal}
-                                className="px-4 py-2 w-fit bg-red-600 text-white rounded-lg shadow-md hover:bg-red-700"
-                            >
-                                Decline
-                            </button>
+                        <div className="flex w-full gap-3">
+                            <div className="flex justify-around gap-2 mt-3 w-1/2">
+                                <FormPic
+                                    label="Upload Image"
+                                    name="file"
+                                    onChange={handleFileUpload}
+                                    className="w-full text-center"
+                                />
+                            </div>
+                            <div className="flex justify-around gap-2 mt-3 w-1/2">
+                                <button
+                                    type="button"
+                                    className="px-4 py-2 bg-green-700 text-white rounded-lg shadow-md hover:bg-green-800"
+                                >
+                                    Approve
+                                </button>
+                                <button
+                                    type="button"
+                                    onClick={closeModal}
+                                    className="px-4 py-2 w-fit bg-red-600 text-white rounded-lg shadow-md hover:bg-red-700"
+                                >
+                                    Decline
+                                </button>
+                            </div>
                         </div>
+
                     </form>
                 </div>
             </div>
@@ -259,4 +265,4 @@ const AddBooking = ({ closeModal, role, modal }) => {
     );
 };
 
-export default AddBooking;
+export default React.memo(AddBooking);

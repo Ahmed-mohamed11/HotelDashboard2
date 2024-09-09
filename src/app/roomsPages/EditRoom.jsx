@@ -1,4 +1,5 @@
 'use client';
+import React from "react";
 import { useState, useCallback, useMemo } from "react";
 import { Plus, X } from "@phosphor-icons/react";
 import FormBtnIcon from "../../form/FormBtnIcon";
@@ -173,4 +174,4 @@ const EditRoom = ({ closeModal, modal, role }) => {
     );
 };
 
-export default EditRoom;
+export default React.memo(EditRoom);

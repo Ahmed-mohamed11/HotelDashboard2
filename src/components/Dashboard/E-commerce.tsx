@@ -1,78 +1,22 @@
 "use client";
 import React, { memo } from "react";
-import ChartThree from "../Charts/ChartThree";
-import ChartTwo from "../Charts/ChartTwo";
-import MapOne from "../Maps/MapOne";
-import ChartOne from "@/components/Charts/ChartOne";
 import { FaFileExport } from "react-icons/fa";
 import { LuUserCheck } from "react-icons/lu";
 import { AiOutlineUsergroupAdd } from "react-icons/ai";
 import { TbScreenShareOff } from "react-icons/tb";
+import { Inter } from "next/font/google";
+
+import ChartOne from "@/components/Charts/ChartOne";
+import ChartTwo from "../Charts/ChartTwo";
+import ChartThree from "../Charts/ChartThree";
 import ChartSix from "../Charts/ChartSix";
 import ChartSeven from "../Charts/ChartSeven";
+import MapOne from "../Maps/MapOne";
 import Card from "./Card";
-import { Inter } from "next/font/google";
 
 const inter = Inter({ subsets: ["latin"], weight: ["400", "600"] });
 
-const ECommerce: React.FC = () => {
-  return (
-    <div className={`${inter.className} flex flex-col gap-4`}>
-      <section className="flex w-full flex-col gap-4 lg:flex-row">
-        <div className="flex-1">
-          <div className="rounded-3xl bg-white px-8 py-5 shadow-md dark:bg-gray-dark xl:w-[48vw]">
-            <div className="flex justify-between pb-12">
-              <div>
-                <h1 className="text-3xl font-bold text-black dark:text-white">
-                  Today’s Sales
-                </h1>
-                <h2 className="text-gray-400">Sales Summary</h2>
-              </div>
-              <button className="flex items-center gap-3 rounded-3xl border-2 border-blue-300 px-3 py-2">
-                <FaFileExport /> Export
-              </button>
-            </div>
-            <div className="grid grid-cols-2 gap-12 sm:grid-cols-4 lg:grid-cols-2 xl:grid-cols-4">
-              {cardsData.map((card) => (
-                <MemoizedCard key={card.label} {...card} />
-              ))}
-            </div>
-          </div>
-        </div>
-
-        <div className="w-full rounded-2xl bg-white px-3 pt-5 shadow-md dark:bg-gray-dark lg:w-[30vw]">
-          <h3 className="text-lg font-bold">Reserved rooms / Empty rooms</h3>
-          <ChartTwo />
-        </div>
-      </section>
-
-      <div className="flex flex-col flex-wrap items-center justify-between gap-4 md:flex-row lg:flex-row xl:flex-row">
-        <div className="flex-1 py-8">
-          <MapOne />
-        </div>
-        <div className="flex-1 py-8">
-          <ChartSix />
-        </div>
-        <div className="flex-1 py-8">
-          <ChartSeven />
-        </div>
-      </div>
-
-      <div className="flex w-full flex-col gap-4 md:flex-row lg:flex-row xl:flex-row">
-        <div className="w-full rounded-lg     md:w-1/2 xl:w-1/2">
-          <ChartThree />
-        </div>
-        <div className="w-full rounded-lg    md:w-1/2 xl:w-1/2">
-          <ChartOne />
-        </div>
-      </div>
-    </div>
-  );
-};
-
- const MemoizedCard = memo(Card);
-
- const cardsData = [
+const cardsData = [
   {
     icon: AiOutlineUsergroupAdd,
     label: "Total Sales",
@@ -106,5 +50,62 @@ const ECommerce: React.FC = () => {
     colorIcon: "bg-[#BF83FF]",
   },
 ];
+
+const MemoizedCard = memo(Card);
+
+const ECommerce: React.FC = () => {
+  return (
+    <div className={`${inter.className} flex flex-col gap-4`}>
+      <section className="flex w-full flex-col gap-4 lg:flex-row">
+        <div className="flex-1">
+          <div className="rounded-3xl bg-white px-8 py-5 shadow-md dark:bg-gray-dark xl:w-[48vw]">
+            <div className={`flex justify-between pb-12 ${inter.className}`}>
+              <div>
+                <h1 className="text-3xl font-bold text-black dark:text-white">
+                  Today’s Sales
+                </h1>
+                <h2 className="text-gray-400">Sales Summary</h2>
+              </div>
+              <button className="flex items-center gap-3 rounded-3xl border-2 border-blue-300 px-3 py-2">
+                <FaFileExport /> Export
+              </button>
+            </div>
+            <div className="grid grid-cols-2 gap-8 sm:grid-cols-4 lg:grid-cols-2 xl:grid-cols-4">
+              {cardsData.map((card) => (
+                <MemoizedCard key={card.label} {...card} />
+              ))}
+            </div>
+          </div>
+        </div>
+
+        <div className="w-full rounded-2xl bg-white px-3 pt-5 shadow-md dark:bg-gray-dark lg:w-[30vw]">
+          <h3 className="text-lg font-bold">Reserved rooms / Empty rooms</h3>
+          <ChartTwo />
+        </div>
+      </section>
+
+      <div className="flex flex-col flex-wrap items-center justify-between  md:flex-row lg:flex-row xl:flex-row">
+        <div className="  py-8">
+          <ChartSix />
+        </div>
+        <div className="  py-8">
+          <MapOne />
+        </div>
+        <div className="  py-8">
+          <ChartSeven />
+        </div>
+      </div>
+
+      <div className="flex w-full flex-col gap-4 md:flex-row lg:flex-row xl:flex-row">
+        <div className="w-full rounded-lg md:w-1/2 xl:w-1/2">
+          <ChartThree />
+        </div>
+        <div className="w-full rounded-lg md:w-1/2 xl:w-1/2">
+          <ChartOne />
+        </div>
+      </div>
+    </div>
+  );
+};
 
 export default memo(ECommerce);

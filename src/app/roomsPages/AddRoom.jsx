@@ -1,4 +1,5 @@
 'use client';
+import React from "react";
 import { useState, useCallback, useMemo } from "react";
 import { Plus, X } from "@phosphor-icons/react";
 import FormBtnIcon from "../../form/FormBtnIcon";
@@ -9,7 +10,7 @@ import FormSelect from "../../form/FormSelect";
 import FormInput from "../../form/FormInput";
 import debounce from 'lodash.debounce';
 
-export default function AddBooking({ closeModal, modal }) {
+ function AddBooking({ closeModal, modal }) {
     const [formData, setFormData] = useState({
         customerName: "",
         roomType: "",
@@ -182,3 +183,4 @@ export default function AddBooking({ closeModal, modal }) {
         </div>
     );
 }
+export default React.memo(AddBooking)

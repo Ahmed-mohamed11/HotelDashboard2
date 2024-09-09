@@ -1,5 +1,5 @@
 'use client';
-import { useState, useCallback } from "react";
+import React, { useState, useCallback } from "react";
 import { Plus, X } from "@phosphor-icons/react";
 import FormBtnIcon from "../../form/FormBtnIcon";
 import FormText from "../../form/FormText";
@@ -10,7 +10,7 @@ import FormInput from "../../form/FormInput";
 import debounce from 'lodash.debounce';
 import { Badge, Button, Input, Label } from "reactstrap";
 
-export default function PreviewRoom2({ closeModal }) {
+ function PreviewRoom2({ closeModal }) {
     const [formData, setFormData] = useState({
         customerName: "name",
         roomNumber: "50",
@@ -230,3 +230,4 @@ export default function PreviewRoom2({ closeModal }) {
         </div>
     );
 }
+export default React.memo(PreviewRoom2)

@@ -5,10 +5,11 @@ import { FaStar } from 'react-icons/fa';
 import gsap from 'gsap';
  import HotelTable from './HotelTable';
 import AddHotel from '../hotelsPages/AddHotel';
-import PreviewHotel from './PreviewHotel';
-import ChartNine from '@/components/Charts/ChartNine';
+import PreviewHotel from '../requestPages/PreviewRequest';
 import ChartEight from '@/components/Charts/ChartEight';
-
+import ChartNine from '@/components/Charts/ChartNine';
+ 
+ 
  
 const Hotel = ({ role }) => {
     const [openCreate, setOpenCreate] = useState(false);
@@ -55,7 +56,7 @@ const Hotel = ({ role }) => {
     };
 
     return (
-        <main className={`  flex flex-col lg:flex-row w-full p-3 -mt-5 gap-5 justify-between overflow-x-hidden`}>
+        <main className={`  flex flex-col lg:flex-row w-full  -mt-5 gap-5 justify-between overflow-x-hidden`}>
             <section className='flex-1 lg:overflow-x-auto '>
 
                 <div className='grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 lg:grid-cols-2 gap-4 '>

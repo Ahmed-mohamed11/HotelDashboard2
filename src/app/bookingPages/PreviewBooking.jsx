@@ -1,7 +1,7 @@
 'use client';
+import React from "react";
 import { useState, useCallback } from "react";
-import { Plus, X } from "@phosphor-icons/react";
-import FormBtnIcon from "../../form/FormBtnIcon";
+import { X } from "@phosphor-icons/react";
 import FormText from "../../form/FormText";
 import FormNumber from "../../form/FormNumber";
 import FormEmail from "../../form/FormEmail";
@@ -11,7 +11,7 @@ import debounce from 'lodash.debounce';
 import { Badge, Button, Input, Label } from "reactstrap";
 import FormTextArea from "../../form/FormTextArea";
 
-export default function PreviewBooking({ closeModal }) {
+function PreviewBooking({ closeModal }) {
     const [formData, setFormData] = useState({
         customerName: "name",
         roomNumber: "50",
@@ -184,32 +184,54 @@ export default function PreviewBooking({ closeModal }) {
                                     />
                                 </div>
                             </div>
-                            <div className="flex gap-4 items-center">
-                                <div className="space-y-2 md:w-1/2">
+                            <div className="flex justify-between items-center gap-3 mt-3">
+                                <div className="w-1/2">
                                     <Label>Features</Label>
-                                    <div className="flex space-x-1">
-                                        <Badge variant="default">WIFI</Badge>
-                                        <Badge variant="default">AC</Badge>
-                                        <Badge variant="default">Free breakfast</Badge>
-                                        <Badge variant="default">VIP</Badge>
+                                    <div className="flex space-x-2 my-3">
+                                        {["AC", "GPS", "Bluetooth", "Wifi"].map((facility) => (
+                                            <div key={facility} className="flex items-center space-x-2">
+                                                <input
+                                                    type="checkbox"
+                                                    id={facility.toLowerCase()}
+                                                    name="facilities"
+                                                    value={facility.toLowerCase()}
+                                                    checked={formData.facilities?.includes(facility.toLowerCase()) || false}
+                                                    readOnly
+                                                    className="form-checkbox h-4 w-4 text-green-600"
+                                                />
+                                                <Label htmlFor={facility.toLowerCase()} className="ml-2 text-gray-700">
+                                                    {facility}
+                                                </Label>
+                                            </div>
+                                        ))}
                                     </div>
                                 </div>
-                                <div className=" ">
-                                    <Label htmlFor="adults">Adults</Label>
-                                    <div className="flex items-center">
-                                        <Button variant="outline">-</Button>
-                                        <Input id="adults" value="2" className="text-center" readOnly />
-                                        <Button variant="outline">+</Button>
+                                <div className="flex flex-col">
+                                    <Label htmlFor="adults" className="text-center">Adults</Label>
+                                    <div className="w-1/2">
+                                        <div className="flex items-center  bg-gray-50">
+                                            <Button outline>-</Button>
+                                            <Input id="adults" value="2" className="text-center bg-gray-50" readOnly />
+                                            <Button outline>+</Button>
+                                        </div>
                                     </div>
                                 </div>
-                                <div className="">
-                                    <Label htmlFor="children">Children</Label>
-                                    <div className="flex items-center">
-                                        <Button variant="outline">-</Button>
-                                        <Input id="children" value="2" className="text-center" readOnly />
-                                        <Button variant="outline">+</Button>
-                                    </div>
-                                </div>
+                            </div>
+                            <div className="flex justify-center gap-2 mt-5">
+                                <button
+                                    type="button"
+                                    className="px-8 py-2 bg-green-700 text-white rounded-lg shadow-md"
+                                    disabled
+                                >
+                                    Approve
+                                </button>
+                                <button
+                                    type="button"
+                                    onClick={closeModal}
+                                    className="px-8 py-2 w-fit bg-red-600 text-white rounded-lg shadow-md hover:bg-red-700"
+                                >
+                                    Decline
+                                </button>
                             </div>
 
                             {showDeclineReason && (
@@ -225,25 +247,7 @@ export default function PreviewBooking({ closeModal }) {
                                 </div>
                             )}
 
-                            <div className="flex justify-center items-center gap-3 my-5">
-                                <div className="rounded-3xl bg-green-700">
-                                    <FormBtnIcon
-                                        label="Approve"
-                                        Icon={Plus}
-                                        type="submit"
-                                        className="w-full mt-6 text-white font-bold py-2 px-4 rounded"
-                                    />
-                                </div>
-                                <div className="rounded-3xl bg-red-700">
-                                    <FormBtnIcon
-                                        label="Decline"
-                                        Icon={Plus}
-                                        type="button"
-                                        className="w-full mt-6 text-white font-bold py-2 px-4 rounded"
-                                        onClick={handleDeclineClick}
-                                    />
-                                </div>
-                            </div>
+
                         </div>
                     </form>
                 </div>
@@ -251,3 +255,4 @@ export default function PreviewBooking({ closeModal }) {
         </div>
     );
 }
+export default React.memo(PreviewBooking)

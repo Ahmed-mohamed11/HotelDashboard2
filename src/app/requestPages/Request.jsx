@@ -57,7 +57,7 @@ const Request = ({ role }) => {
     };
 
     return (
-        <main className="flex flex-col lg:flex-row w-full p-4 -mt-5 overflow-x-auto">
+        <main className={`  flex flex-col lg:flex-row w-full  -mt-5 gap-5 justify-between overflow-x-hidden`}>
             <section className='flex-1 lg:overflow-x-auto '>
 
                 <div className='grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 lg:grid-cols-2 gap-4 '>
@@ -124,8 +124,8 @@ const Request = ({ role }) => {
                         closeModal={() => setOpenPreview(false)}
                     />
                 )}
-
             </section>
+
         </main>
     );
 };
