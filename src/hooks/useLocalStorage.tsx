@@ -7,20 +7,14 @@ function useLocalStorage<T>(
   key: string,
   initialValue: T,
 ): [T, (value: SetValue<T>) => void] {
-  // State to store our value
-  // Pass  initial state function to useState so logic is only executed once
-  const [storedValue, setStoredValue] = useState(() => {
+   const [storedValue, setStoredValue] = useState(() => {
     try {
-      // Get from local storage by key
-      if (typeof window !== "undefined") {
-        // browser code
-        const item = window.localStorage.getItem(key);
-        // Parse stored json or if none return initialValue
-        return item ? JSON.parse(item) : initialValue;
+       if (typeof window !== "undefined") {
+         const item = window.localStorage.getItem(key);
+         return item ? JSON.parse(item) : initialValue;
       }
     } catch (error) {
-      // If error also return initialValue
-      console.log(error);
+       console.log(error);
       return initialValue;
     }
   });
