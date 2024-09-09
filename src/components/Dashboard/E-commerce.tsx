@@ -1,5 +1,4 @@
 "use client";
-import dynamic from "next/dynamic";
 import React, { memo } from "react";
 import { FaFileExport } from "react-icons/fa";
 import { LuUserCheck } from "react-icons/lu";
@@ -7,14 +6,13 @@ import { AiOutlineUsergroupAdd } from "react-icons/ai";
 import { TbScreenShareOff } from "react-icons/tb";
 import { Inter } from "next/font/google";
 
+import ChartOne from "@/components/Charts/ChartOne";
 import ChartTwo from "../Charts/ChartTwo";
 import ChartThree from "../Charts/ChartThree";
 import ChartSix from "../Charts/ChartSix";
 import ChartSeven from "../Charts/ChartSeven";
 import MapOne from "../Maps/MapOne";
 import Card from "./Card";
-
- const ChartOne = dynamic(() => import("../Charts/ChartOne"), { ssr: false });
 
 const inter = Inter({ subsets: ["latin"], weight: ["400", "600"] });
 

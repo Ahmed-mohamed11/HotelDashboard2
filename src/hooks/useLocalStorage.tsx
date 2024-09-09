@@ -7,33 +7,33 @@ function useLocalStorage<T>(
   key: string,
   initialValue: T,
 ): [T, (value: SetValue<T>) => void] {
-  // Ensure this runs only on the client by checking for window
-  const isClient = typeof window !== "undefined";
-
-  const [storedValue, setStoredValue] = useState<T>(() => {
-    if (!isClient) {
-      // Return the initial value during SSR
-      return initialValue;
-    }
-
+   const [storedValue, setStoredValue] = useState(() => {
     try {
-      const item = window.localStorage.getItem(key);
-      return item ? JSON.parse(item) : initialValue;
+       if (typeof window !== "undefined") {
+         const item = window.localStorage.getItem(key);
+         return item ? JSON.parse(item) : initialValue;
+      }
     } catch (error) {
-      console.log(error);
+       console.log(error);
       return initialValue;
     }
   });
 
-  useEffect(() => {
-    if (isClient) {
-      try {
-        window.localStorage.setItem(key, JSON.stringify(storedValue));
-      } catch (error) {
-        console.log(error);
+   useEffect(() => {
+    if (typeof window !== "undefined") {
+
+    try {
+       const valueToStore =
+        typeof storedValue === "function"
+          ? storedValue(storedValue)
+          : storedValue;
+       if (typeof window !== "undefined") {
+        window.localStorage.setItem(key, JSON.stringify(valueToStore));
       }
+    } catch (error) {
+       console.log(error);
     }
-  }, [key, storedValue, isClient]); // Add dependencies here
+  }  }, [key, storedValue]);
 
   return [storedValue, setStoredValue];
 }
