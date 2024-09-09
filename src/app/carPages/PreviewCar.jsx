@@ -12,7 +12,7 @@ import FormTextArea from "@/form/FormTextArea";
 
 const inter = Inter({ subsets: ['latin'], weight: ['400', '600'] });
 
-const previewCar = ({ closeModal, role, modal }) => {
+const PreviewCar = ({ closeModal, role, modal }) => {
     const initialFormData = useMemo(() => ({
         carType: "Sedan",
         carModel: "2021",
@@ -176,4 +176,4 @@ const previewCar = ({ closeModal, role, modal }) => {
     );
 };
 
-export default previewCar;
+export default PreviewCar;
