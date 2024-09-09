@@ -77,7 +77,7 @@ const Table = ({ data,
 
         document.addEventListener('click', handleClickOutside);
         return () => document.removeEventListener('click', handleClickOutside);
-    }}, [handleClickOutside]);
+        }    }, [handleClickOutside]);
 
     const toggleEditDropdown = useCallback((id) => {
         setSelectedId((prevId) => (prevId === id ? null : id));
