@@ -23,6 +23,7 @@ import React from "react";
     return (
         <div><Table headers={headers}
             data={data}
+            addItemLabel="Room" 
             openCreate={openCreate}
             openPreview={openPreview} />
         </div>

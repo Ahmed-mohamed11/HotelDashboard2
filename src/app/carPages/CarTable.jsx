@@ -1,5 +1,5 @@
+import React from 'react';
 import Table from '../Table';
-
 
 const CarTable = ({ openCreate, openPreview }) => {
      const headers = [
@@ -23,9 +23,12 @@ const CarTable = ({ openCreate, openPreview }) => {
         <div><Table headers={headers}
             data={data}
             openCreate={openCreate}
-            openPreview={openPreview} />
+            openPreview={openPreview}
+            addItemLabel="Car" 
+            />
+            
         </div>
     );
 };
 
-export default CarTable;
+export default React.memo(CarTable);

@@ -1,4 +1,5 @@
 'use client';
+import React from "react";
 import { useState, useCallback, useMemo } from "react";
 import { X } from "@phosphor-icons/react";
 import FormText from "../../form/FormText";
@@ -184,4 +185,4 @@ const AddCar = ({ closeModal, role, modal }) => {
     );
 };
 
-export default AddCar;
+export default React.memo(AddCar);

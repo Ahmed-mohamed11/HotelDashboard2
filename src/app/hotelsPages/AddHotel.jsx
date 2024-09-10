@@ -1,4 +1,5 @@
 'use client';
+import React from "react";
 import { useState, useCallback, useMemo } from "react";
 import { Plus, X } from "@phosphor-icons/react";
 import FormText from "../../form/FormText";
@@ -251,4 +252,4 @@ const AddHotel = ({ closeModal, role, modal }) => {
     );
 };
 
-export default  AddHotel ;
+export default  React.memo(AddHotel) ;

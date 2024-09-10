@@ -1,6 +1,7 @@
 'use client';
+import React from "react";
 import { useState, useCallback, useMemo } from "react";
-import { X, Plus } from "@phosphor-icons/react";
+import { X } from "@phosphor-icons/react";
 import FormText from "../../form/FormText";
 import FormNumber from "../../form/FormNumber";
 import FormEmail from "../../form/FormEmail";
@@ -8,8 +9,7 @@ import FormSelect from "../../form/FormSelect";
 import FormInput from "@/form/FormInput";
 import { Button, Input, Label } from "reactstrap";
 import { Inter } from 'next/font/google';
-const inter = Inter({ subsets: ['latin'], weight: ['400', '600'] });
-
+ 
 const AddRenting = ({ closeModal, role, modal }) => {
     const initialFormData = useMemo(() => ({
         customerName: "",
@@ -260,4 +260,4 @@ const AddRenting = ({ closeModal, role, modal }) => {
     );
 };
 
-export default AddRenting;
+export default React.memo(AddRenting);

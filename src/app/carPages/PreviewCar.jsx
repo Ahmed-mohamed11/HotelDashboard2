@@ -1,17 +1,16 @@
 'use client';
+import React from "react";
 import { useState, useCallback, useMemo } from "react";
 import { X } from "@phosphor-icons/react";
 import FormText from "../../form/FormText";
 import FormNumber from "../../form/FormNumber";
 import FormSelect from "../../form/FormSelect";
 import { Label } from "reactstrap";
-import { Inter } from 'next/font/google';
-import Image from 'next/image';
-import carImage from '../../../public/images/Group (5).svg'; // Import the car image
+ import Image from 'next/image';
+import carImage from '../../../public/images/Group (5).svg';
 import FormTextArea from "@/form/FormTextArea";
 
-const inter = Inter({ subsets: ['latin'], weight: ['400', '600'] });
-
+ 
 const PreviewCar = ({ closeModal, role, modal }) => {
     const initialFormData = useMemo(() => ({
         carType: "Sedan",
@@ -40,8 +39,7 @@ const PreviewCar = ({ closeModal, role, modal }) => {
                 style={{ width: '40vw', zIndex: 50 }}
             >
                 <div className="relative text-gray-900">
-                    {/* Car Image with Rotating Border */}
-                    <div className="bg-green-700 w-full flex justify-between items-center text-white p-3 mb-4 rounded-t-lg border-b">
+                     <div className="bg-green-700 w-full flex justify-between items-center text-white p-3 mb-4 rounded-t-lg border-b">
                         <h3 className="text-lg font-semibold">View Car</h3>
                         <button
                             type="button"
@@ -151,8 +149,7 @@ const PreviewCar = ({ closeModal, role, modal }) => {
                                 />
                             </div>
 
-                            {/* Buttons */}
-                            <div className="flex justify-center gap-2 mt-5">
+                             <div className="flex justify-center gap-2 mt-5">
                                 <button
                                     type="button"
                                     className="px-8 py-2 bg-green-700 text-white rounded-lg shadow-md"
@@ -176,4 +173,4 @@ const PreviewCar = ({ closeModal, role, modal }) => {
     );
 };
 
-export default PreviewCar;
+export default React.memo(PreviewCar);

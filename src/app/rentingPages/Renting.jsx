@@ -23,4 +23,4 @@ import AddRenting from '../rentingPages/AddRenting'
   )
 }
 
-export default Renting
+export default React.memo(Renting)
