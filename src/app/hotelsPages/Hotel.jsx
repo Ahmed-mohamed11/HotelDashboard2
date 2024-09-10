@@ -1,16 +1,13 @@
-'use client';
-
+"use client"
 import React, { useEffect, useState, useCallback } from 'react';
 import { FaStar } from 'react-icons/fa';
 import gsap from 'gsap';
- import HotelTable from './HotelTable';
+import HotelTable from './HotelTable';
 import AddHotel from '../hotelsPages/AddHotel';
 import PreviewHotel from '../requestPages/PreviewRequest';
 import ChartEight from '@/components/Charts/ChartEight';
 import ChartNine from '@/components/Charts/ChartNine';
- 
- 
- 
+
 const Hotel = ({ role }) => {
     const [openCreate, setOpenCreate] = useState(false);
     const [openPreview, setOpenPreview] = useState(false);
@@ -23,9 +20,9 @@ const Hotel = ({ role }) => {
     }, []);
 
     useEffect(() => {
+        // Ensure this runs only on the client side
         if (typeof window !== 'undefined') {
             const ctx = gsap.context(() => {
-
                 gsap.fromTo(
                     ".chart-container",
                     { opacity: 0, y: 50 },
@@ -56,19 +53,18 @@ const Hotel = ({ role }) => {
     };
 
     return (
-        <main className={`  flex flex-col lg:flex-row w-full  -mt-5 gap-5 justify-between overflow-x-hidden`}>
-            <section className='flex-1 lg:overflow-x-auto '>
-
-                <div className='grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 lg:grid-cols-2 gap-4 '>
-                    <div className="  chart-container  p-3 rounded-2xl md:w-[45vw]  xl:w-[24vw] lg:w-[30vw] w-full">
+        <main className="flex flex-col lg:flex-row w-full -mt-5 gap-5 justify-between overflow-x-hidden">
+            <section className="flex-1 lg:overflow-x-auto">
+                <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 lg:grid-cols-2 gap-4">
+                    <div className="chart-container p-3 rounded-2xl md:w-[45vw] xl:w-[24vw] lg:w-[30vw] w-full">
                         <ChartEight />
                     </div>
 
-                    <div className="   chart-container p-3 rounded-2xl w-full md:w-[40vw] lg:w-[30vw] xl:w-[24vw]  ">
+                    <div className="chart-container p-3 rounded-2xl w-full md:w-[40vw] lg:w-[30vw] xl:w-[24vw]">
                         <ChartNine />
                     </div>
 
-                    <div className="flex flex-col   justify-center items-center dark:text-white dark:bg-gray-dark bg-white  chart-container  xl:w-[24vw] shadow-md px-3   rounded-2xl w-full  ">
+                    <div className="flex flex-col justify-center items-center dark:text-white dark:bg-gray-dark bg-white chart-container xl:w-[24vw] shadow-md px-3 rounded-2xl w-full">
                         <h3 className="font-bold text-lg">Top Rated Hotels</h3>
                         <ul>
                             {topRatedHotels.map((hotel, index) => (
@@ -89,7 +85,6 @@ const Hotel = ({ role }) => {
                                                 opacity: 0.3,
                                             }}
                                         ></div>
-                                        ,/
                                     </div>
                                     <div className="relative z-10 flex items-center justify-between w-full">
                                         {[...Array(5)].map((_, starIndex) => (
@@ -101,8 +96,8 @@ const Hotel = ({ role }) => {
                                                     }`}
                                             />
                                         ))}
-                                        <div className='flex'>
-                                            <span className="ml-2 font-bold flex">{hotel.rating} </span>
+                                        <div className="flex">
+                                            <span className="ml-2 font-bold flex">{hotel.rating}</span>
                                             <span>★</span>
                                         </div>
                                     </div>
@@ -111,24 +106,14 @@ const Hotel = ({ role }) => {
                         </ul>
                     </div>
                 </div>
-                <HotelTable openPreview={toggleOpenPreviewModal}
-                    openCreate={toggleOpenCreateModal} />
-                <AddHotel
-                    closeModal={toggleOpenCreateModal}
-                    modal={openCreate}
-                    role={role}
-                />
+                <HotelTable openPreview={toggleOpenPreviewModal} openCreate={toggleOpenCreateModal} />
+                <AddHotel closeModal={toggleOpenCreateModal} modal={openCreate} role={role} />
                 {openPreview && (
-                    <PreviewHotel
-                        closeModal={() => setOpenPreview(false)}
-                    />
+                    <PreviewHotel closeModal={() => setOpenPreview(false)} />
                 )}
-
             </section>
         </main>
     );
 };
 
 export default React.memo(Hotel);
-
-
