@@ -32,33 +32,29 @@ const Rooms = ({ role }) => {
     useEffect(() => {
         if (typeof window !== 'undefined') {
             const ctx = gsap.context(() => {
-
                 gsap.fromTo(
                     ".chart-container",
                     { opacity: 0, y: 50 },
                     { opacity: 1, y: 0, duration: 1, stagger: 0.2 }
                 );
                 gsap.fromTo(".card1", { opacity: 0, y: 50 }, { opacity: 1, y: 0, duration: 1, stagger: 0.2 });
-
             });
+
             return () => ctx.revert();
         }
     }, []);
 
-
-
     return (
-        <div className={`flex justify-between    ${inter.className}`}>
-            <div className='flex   flex-col w-full'>
+        <div className={`flex justify-between ${inter.className}`}>
+            <div className='flex flex-col w-full'>
                 <div>
                     <div className="animate-context">
-
                         <div className="flex w-full flex-col items-center gap-4 px-4 lg:flex-row xl:flex-row">
                             <div className="flex-1">
-                                <div className="chart-container rounded-3xl bg-white py-5 pe-16 ps-8 shadow-md dark:bg-gray-dark  xl:w-[48vw]">
-                                    <div className="flex justify-between pb-12  ">
+                                <div className="chart-container rounded-3xl bg-white py-5 pe-16 ps-8 shadow-md dark:bg-gray-dark xl:w-[48vw]">
+                                    <div className="flex justify-between pb-12">
                                         <div>
-                                            <h1 className=" font-poppins fw-boldest  text-3xl text-black dark:bg-gray-dark dark:text-white ">
+                                            <h1 className="font-poppins fw-boldest text-3xl text-black dark:bg-gray-dark dark:text-white">
                                                 Today’s Sales
                                             </h1>
                                             <h2 className="fw-boldest font-poppins text-gray-400">
@@ -105,8 +101,8 @@ const Rooms = ({ role }) => {
                                     </div>
                                 </div>
                             </div>
-                            <div className="chart-container w-[90vw] rounded-2xl bg-white px-3 pt-3 shadow-md dark:bg-gray-dark dark:text-white  md:w-[80vw] md:px-8 lg:w-[30vw] lg:px-2 xl:w-[30vw] xl:px-5">
-                                <h3 className="  text-lg font-bold">
+                            <div className="chart-container w-[90vw] rounded-2xl bg-white px-3 pt-3 shadow-md dark:bg-gray-dark dark:text-white md:w-[80vw] md:px-8 lg:w-[30vw] lg:px-2 xl:w-[30vw] xl:px-5">
+                                <h3 className="text-lg font-bold">
                                     Reserved rooms / Empty rooms
                                 </h3>
                                 <ChartTwo />
