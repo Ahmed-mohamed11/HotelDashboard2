@@ -31,7 +31,7 @@ const Rooms = ({ role }) => {
 
     useEffect(() => {
         if (typeof window !== 'undefined') {
-            const ctx = gsap.context(() => {
+             let ctx = gsap.context(() => {
                 gsap.fromTo(
                     ".chart-container",
                     { opacity: 0, y: 50 },
@@ -40,9 +40,11 @@ const Rooms = ({ role }) => {
                 gsap.fromTo(".card1", { opacity: 0, y: 50 }, { opacity: 1, y: 0, duration: 1, stagger: 0.2 });
             });
 
-            return () => ctx.revert();
+            return () => ctx.revert(); 
         }
     }, []);
+
+
 
     return (
         <div className={`flex justify-between ${inter.className}`}>

@@ -1,18 +1,15 @@
 'use client';
 
 import React, { useEffect, useState, useCallback } from 'react';
-import dynamic from 'next/dynamic';
 import { FaStar } from 'react-icons/fa';
-
-// Dynamically import GSAP with no SSR
-const gsap = typeof window !== "undefined" ? require("gsap") : null;
-
+import gsap from 'gsap';
 import PreviewHotel from './PreviewRequest';
-import AddRequest from '../requestPages/AddRequest';
+ import AddRequest from '../requestPages/AddRequest';
 import RequestTable from './RequestTable';
 
-// Dynamically import the Chart components to avoid server-side execution
-const ChartEight = dynamic(() => import('@/components/Charts/ChartEight'), { ssr: false });
+import dynamic from 'next/dynamic';
+
+ const ChartEight = dynamic(() => import('@/components/Charts/ChartEight'), { ssr: false });
 const ChartNine = dynamic(() => import('@/components/Charts/ChartNine'), { ssr: false });
 
 const Request = ({ role }) => {
@@ -27,7 +24,7 @@ const Request = ({ role }) => {
     }, []);
 
     useEffect(() => {
-        if (typeof window !== 'undefined' && gsap) {
+        if (typeof window !== 'undefined') {
             const ctx = gsap.context(() => {
                 gsap.fromTo(
                     ".chart-container",
@@ -38,6 +35,9 @@ const Request = ({ role }) => {
             return () => ctx.revert();
         }
     }, []);
+
+
+
 
     const topRatedHotels = [
         { name: "Hotel A", count: 120, rating: 5 },
@@ -59,36 +59,50 @@ const Request = ({ role }) => {
     };
 
     return (
-        <main className={`flex flex-col lg:flex-row w-full -mt-5 gap-5 justify-between overflow-x-hidden`}>
-            <section className='flex-1 lg:overflow-x-auto'>
-                <div className='grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 lg:grid-cols-2 gap-4'>
-                    <div className="chart-container p-3 rounded-2xl md:w-[45vw] xl:w-[24vw] lg:w-[30vw] w-full">
+        <main className={`  flex flex-col lg:flex-row w-full  -mt-5 gap-5 justify-between overflow-x-hidden`}>
+            <section className='flex-1 lg:overflow-x-auto '>
+
+                <div className='grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 lg:grid-cols-2 gap-4 '>
+                    <div className="  chart-container  p-3 rounded-2xl md:w-[45vw]  xl:w-[24vw] lg:w-[30vw] w-full">
                         <ChartEight />
                     </div>
-                    <div className="chart-container p-3 rounded-2xl w-full md:w-[40vw] lg:w-[30vw] xl:w-[24vw]">
+
+                    <div className="    chart-container p-3 rounded-2xl w-full md:w-[40vw] lg:w-[30vw] xl:w-[24vw]  ">
                         <ChartNine />
                     </div>
-                    <div className="flex flex-col justify-center items-center dark:text-white dark:bg-gray-dark bg-white chart-container xl:w-[24vw] shadow-md px-3 rounded-2xl w-full">
+
+                    <div className="flex flex-col   justify-center items-center dark:text-white dark:bg-gray-dark bg-white  chart-container  xl:w-[24vw] shadow-md px-3   rounded-2xl w-full  ">
                         <h3 className="font-bold text-lg">Top Rated Hotels</h3>
                         <ul>
                             {topRatedHotels.map((hotel, index) => (
-                                <li key={index} className="relative flex items-center dark:text-white dark:bg-gray-dark px-2 py-1 mb-1 rounded-lg bg-gray-100 w-full">
+                                <li
+                                    key={index}
+                                    className="relative flex items-center dark:text-white dark:bg-gray-dark px-2 py-1 mb-1 rounded-lg bg-gray-100 w-full"
+                                >
                                     <div className="flex items-center">
                                         <span className="font-bold">{index + 1}.</span>
                                         <span className="ml-3 font-semibold">{hotel.name}</span>
                                     </div>
                                     <div className="flex items-center justify-between relative w-full">
-                                        <div className="absolute inset-0 rounded-lg"
+                                        <div
+                                            className="absolute inset-0 rounded-lg"
                                             style={{
                                                 width: `${getPercentageWidth(hotel.count)}%`,
                                                 backgroundColor: getRatingColor(hotel.rating),
                                                 opacity: 0.3,
                                             }}
                                         ></div>
+                                        ,/
                                     </div>
                                     <div className="relative z-10 flex items-center justify-between w-full">
                                         {[...Array(5)].map((_, starIndex) => (
-                                            <FaStar key={starIndex} className={`ml-1 ${hotel.rating >= starIndex + 1 ? "text-yellow-400" : "text-gray-300"}`} />
+                                            <FaStar
+                                                key={starIndex}
+                                                className={`ml-1 ${hotel.rating >= starIndex + 1
+                                                    ? "text-yellow-400"
+                                                    : "text-gray-300"
+                                                    }`}
+                                            />
                                         ))}
                                         <div className='flex'>
                                             <span className="ml-2 font-bold flex">{hotel.rating} </span>
@@ -100,14 +114,24 @@ const Request = ({ role }) => {
                         </ul>
                     </div>
                 </div>
-                <RequestTable openPreview={toggleOpenPreviewModal} openCreate={toggleOpenCreateModal} />
-                <AddRequest closeModal={toggleOpenCreateModal} modal={openCreate} role={role} />
+                <RequestTable openPreview={toggleOpenPreviewModal}
+                    openCreate={toggleOpenCreateModal} />
+                <AddRequest
+                    closeModal={toggleOpenCreateModal}
+                    modal={openCreate}
+                    role={role}
+                />
                 {openPreview && (
-                    <PreviewHotel closeModal={() => setOpenPreview(false)} />
+                    <PreviewHotel
+                        closeModal={() => setOpenPreview(false)}
+                    />
                 )}
             </section>
+
         </main>
     );
 };
 
 export default React.memo(Request);
+
+
