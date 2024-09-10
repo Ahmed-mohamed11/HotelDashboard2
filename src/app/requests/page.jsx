@@ -1,11 +1,8 @@
-import React from 'react'
-import Request from '../requestPages/Request'
+import React from 'react';
+import Request from '../requestPages/Request';
 
-const page = () => {
-    return (
-        <Request />
+const Page = () => {
+    return <Request />;
+};
 
-    )
-}
-
-export default React.memo(page)
+export default React.memo(Page);
