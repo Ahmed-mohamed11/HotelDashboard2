@@ -5,13 +5,21 @@ import { LuUserCheck } from "react-icons/lu";
 import { AiOutlineUsergroupAdd } from "react-icons/ai";
 import { TbScreenShareOff } from "react-icons/tb";
 import { Inter } from "next/font/google";
+import dynamic from "next/dynamic";
 
-import ChartOne from "@/components/Charts/ChartOne";
-import ChartTwo from "../Charts/ChartTwo";
-import ChartThree from "../Charts/ChartThree";
-import ChartSix from "../Charts/ChartSix";
-import ChartSeven from "../Charts/ChartSeven";
-import MapOne from "../Maps/MapOne";
+ const ChartOne = dynamic(() => import("@/components/Charts/ChartOne"), {
+  ssr: false,
+});
+const ChartTwo = dynamic(() => import("../Charts/ChartTwo"), { ssr: false });
+const ChartThree = dynamic(() => import("../Charts/ChartThree"), {
+  ssr: false,
+});
+const ChartSix = dynamic(() => import("../Charts/ChartSix"), { ssr: false });
+const ChartSeven = dynamic(() => import("../Charts/ChartSeven"), {
+  ssr: false,
+});
+const MapOne = dynamic(() => import("../Maps/MapOne"), { ssr: false });
+
 import Card from "./Card";
 
 const inter = Inter({ subsets: ["latin"], weight: ["400", "600"] });
@@ -85,13 +93,13 @@ const ECommerce: React.FC = () => {
       </section>
 
       <div className="flex flex-col flex-wrap items-center justify-between  md:flex-row lg:flex-row xl:flex-row">
-        <div className="  py-8">
+        <div className="py-8">
           <ChartSix />
         </div>
-        <div className="  py-8">
+        <div className="py-8">
           <MapOne />
         </div>
-        <div className="  py-8">
+        <div className="py-8">
           <ChartSeven />
         </div>
       </div>

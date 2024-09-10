@@ -6,7 +6,7 @@ import FormNumber from "../../form/FormNumber";
 import FormEmail from "../../form/FormEmail";
 import FormSelect from "../../form/FormSelect";
 import FormInput from "../../form/FormInput";
-import { Badge, Button, Input, Label } from "reactstrap";
+import {  Button, Input, Label } from "reactstrap";
 
 const PreviewHotel = ({ closeModal }) => {
     const [formData, setFormData] = useState({
