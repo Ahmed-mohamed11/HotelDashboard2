@@ -1,5 +1,5 @@
 'use client';
-
+import React from "react";
 import Table from "../Table";
 
   
@@ -18,10 +18,10 @@ const RequestTable = ({ openCreate, openPreview }) => {
      ];
     return (
         <div className="font-sans">
-            <Table headers={headers} data={data} openCreate={openCreate} openPreview={openPreview} />
+            <Table headers={headers} addItemLabel="Request" data={data} openCreate={openCreate} openPreview={openPreview} />
         </div>
     );
 };
 
-export default RequestTable;
+export default React.memo(RequestTable);
 

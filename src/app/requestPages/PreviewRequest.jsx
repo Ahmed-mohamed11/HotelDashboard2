@@ -1,5 +1,6 @@
 'use client';
-import { useState, useCallback } from "react";
+import React from "react";
+import { useState } from "react";
 import {   X } from "@phosphor-icons/react";
  import FormText from "../../form/FormText";
 import FormNumber from "../../form/FormNumber";
@@ -20,7 +21,7 @@ const PreviewHotel = ({ closeModal }) => {
         hotelName: "kiloPatra",
         checkIn: "17/4/2002",
         checkOut: "18/4/2002",
-        facilities: [] // Ensure this is always an array
+        facilities: []  
     });
 
     const handleBackgroundClick = (e) => {
@@ -220,4 +221,4 @@ const PreviewHotel = ({ closeModal }) => {
     );
 };
 
-export default PreviewHotel;
+export default React.memo(PreviewHotel);

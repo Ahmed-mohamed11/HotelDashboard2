@@ -1,5 +1,6 @@
 'use client'
-import React, { Suspense, useCallback, useState } from 'react'
+import React from 'react';
+import  { Suspense, useCallback, useState } from 'react'
 import CarTable from './CarTable'
 import AddCar from './AddCar';
 import PreviewCar from './PreviewCar';
@@ -23,4 +24,4 @@ import PreviewCar from './PreviewCar';
     )
 }
 
-export default Car
+export default React.memo(Car)

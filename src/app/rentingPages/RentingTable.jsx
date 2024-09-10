@@ -24,7 +24,7 @@ const RentingTable = ({ openCreate, openPreview }) => {
 
     return (
         <div className="font-sans">
-            <Table headers={headers} data={data} openCreate={openCreate} openPreview={openPreview} />
+            <Table headers={headers} addItemLabel="Renting" data={data} openCreate={openCreate} openPreview={openPreview} />
         </div>
     );
 };

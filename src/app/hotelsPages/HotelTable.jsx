@@ -1,5 +1,5 @@
  'use client';
-
+import React from "react";
 import Table from "../Table";
 
  
@@ -18,11 +18,11 @@ const HotelTable = ({ openCreate, openPreview }) => {
 
     return (
         <div className="font-sans">
-             <Table headers={headers} data={data} openCreate={openCreate} openPreview={openPreview} />
+            <Table headers={headers} addItemLabel="Hotel" data={data} openCreate={openCreate} openPreview={openPreview} />
 
         </div>
     );
 };
 
-export default HotelTable;
+export default React.memo(HotelTable);
 

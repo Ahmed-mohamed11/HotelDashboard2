@@ -19,7 +19,7 @@ const BookingTable = ({ openCreate, openPreview }) => {
 
     return (
         <div>
-            <Table headers={headers} data={data} openCreate={openCreate} openPreview={openPreview} />
+            <Table headers={headers} data={data} addItemLabel="Booking" openCreate={openCreate} openPreview={openPreview} />
 
         </div>
     );
