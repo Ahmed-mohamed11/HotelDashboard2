@@ -1,13 +1,12 @@
 'use client';
 import { useState, useCallback } from "react";
-import { Plus, X } from "@phosphor-icons/react";
-import FormBtnIcon from "../../form/FormBtnIcon";
-import FormText from "../../form/FormText";
+import {   X } from "@phosphor-icons/react";
+ import FormText from "../../form/FormText";
 import FormNumber from "../../form/FormNumber";
 import FormEmail from "../../form/FormEmail";
 import FormSelect from "../../form/FormSelect";
 import FormInput from "../../form/FormInput";
-import { Badge, Button, Input, Label } from "reactstrap";
+import {  Button, Input, Label } from "reactstrap";
 
 const PreviewHotel = ({ closeModal }) => {
     const [formData, setFormData] = useState({
